@@ -1,0 +1,25 @@
+{
+  "name": "transom-server-functions-example",
+  "version": "0.1.0",
+  "repository": {
+    "git": "https://github.com/binaryops-wiebo/transom-functions-simple-example"
+  },
+  "description": "Simple example of transom-server-functions.",
+  "main": "index.js",
+  "scripts": {
+    "start": "cross-env connectstr=mongodb://localhost/transom-db-secured-fx node index.js",
+    "debug": "cross-env connectstr=mongodb://localhost/transom-db-secured-fx DEBUG=transom* node --inspect-brk index.js"
+  },
+  "author": "Wiebo Troost",
+  "license": "MIT",
+  "dependencies": {
+    "@transomjs/transom-core": "^1.0.6",
+    "@transomjs/transom-mongoose": "^1.1.11",
+    "@transomjs/transom-mongoose-localuser": "^1.0.11",
+    "@transomjs/transom-scaffold": "^1.0.11",
+    "@transomjs/transom-server-functions": "^1.0.5"
+  },
+  "devDependencies": {
+    "cross-env": "^5.1.3"
+  }
+}

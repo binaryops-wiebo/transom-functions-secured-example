@@ -14,7 +14,7 @@
   "license": "MIT",
   "dependencies": {
     "@transomjs/transom-core": "^1.0.6",
-    "@transomjs/transom-mongoose": "^1.1.11",
+    "@transomjs/transom-mongoose": "^1.1.13",
     "@transomjs/transom-mongoose-localuser": "^1.0.11",
     "@transomjs/transom-scaffold": "^1.0.11",
     "@transomjs/transom-server-functions": "^1.0.5"

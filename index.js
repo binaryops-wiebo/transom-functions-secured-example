@@ -64,7 +64,8 @@ transom.initialize(myApi).then(function(server){
 
 })
 .catch(function(err){
-	 return console.log('Unable to start the server', err);
+	 console.log('Unable to start the server, exiting');
+	 process.exit(-1);
 });
 
 // ****************************************************************************

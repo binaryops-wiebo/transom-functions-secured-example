@@ -2,7 +2,7 @@
 
 Same as the [simple example](https://github.com/binaryops-wiebo/transom-functions-simple-example), however this time the functions are secured using the transom-mongoose-localuser plugin.
 
-##Usage
+## Usage
 Clone the repo and run `npm install`.
 Update scripts section of the package.json file, to use the connect string to your mongoDb instance. You can get a free sandbox database at [mLab](https://www.mlab.com) 
 

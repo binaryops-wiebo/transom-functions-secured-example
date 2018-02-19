@@ -9,13 +9,6 @@ module.exports = {
 				//assetPath: 'public-assets',
 				path:  /html\/?.*/
 			}
-			// static: [{
-			// 	pathOnDisk: '/html',
-			// 	uriPath: /html\/?.*/
-			// },{
-			// 	pathOnDisk: '/docs/pdf',
-			// 	uriPath: /pdf\/?.*/
-			// }]
 		},
         functions: {
 			hello:{

@@ -8,9 +8,6 @@ const transomScaffold = require('@transomjs/transom-scaffold');
 
 const transom = new Transom();
 
-// ****************************************************************************
-// This sample app doesn't use any metadata from the API definition.
-// ****************************************************************************
 const myApi = require('./myApi');
 console.log("Running " + myApi.name);
 

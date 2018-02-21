@@ -1,4 +1,5 @@
-# transom-functions-secured-example
+# TransomJS Secured Functions
+### Example
 
 Same as the [simple example](https://github.com/binaryops-wiebo/transom-functions-simple-example), however this time the functions are secured using the transom-mongoose-localuser plugin.
 

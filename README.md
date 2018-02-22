@@ -2,7 +2,7 @@
 ### Secured TransomJS Server Functions example
 
 In this example we create a TransomJS server and use the [transom-server-functions](https://transomjs.github.io/docs/transom-server-functions/) plugin to create an endpoint for a your custom function. The function will be secured using the [transom-mongoose-localuser](https://transomjs.github.io/docs/transom-mongoose-localuser/) plugin. We will host a little html page to facilitate the login using the [transom-scaffold](https://transomjs.github.io/docs/transom-scaffold/) plugin.
-This example demonstrates how you can use your own custom code as a secured endpoint in the API. Your custom code runs in the context of the TransomJS server, and has access to the entire server context. The plugins take care of securiing your new function. The user needs to be authenticated and authorized to call your function. In this example we just use the default administrator user.
+This example demonstrates how you can use your own custom code as a secured endpoint in the API. Your custom code runs in the context of the TransomJS server, and has access to the entire server context. The plugins take care of securing your new function. The user needs to be authenticated and authorized to call your function. In this example we just use the default administrator user.
 
 ### Run the example
 Clone the `transom-functions-secured-example` repository and install the dependencies with npm. 

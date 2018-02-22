@@ -1,122 +1,172 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
+
+<head>
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
     <!-- Bootstrap CSS -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ"
+        crossorigin="anonymous">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.1/css/font-awesome.min.css">
-  </head>
-  <body>
-      
-        <script>
-            var authToken = '';
-            function doLogin(){
-                const username = $('#username').val();
-                const pwd = $('#password').val();
+</head>
 
-                var setLoginHeader = function(xhr){
-                    const authVal = 'Basic ' +  btoa(username + ':' + pwd);
+<body>
+    <script>
+        var authToken = '';
+
+        function doLogin() {
+            const username = $('#username').val();
+            const pwd = $('#password').val();
+
+            var setLoginHeader =
+                console.log('going to login in with ', username, pwd);
+            $.ajax({
+                url: "/api/v1/user/login",
+                type: "POST",
+                beforeSend: function (xhr) {
+                    const authVal = 'Basic ' + btoa(username + ':' + pwd);
                     console.log('AuthVal ', authVal);
                     xhr.setRequestHeader('Authorization', authVal);
 
+                },
+                success: function (data) {
+                    console.log('we got data ', data);
+                    $('#lastResponse').text(JSON.stringify(data, 2));
+
+                    // Randomly pick a number between 1 and 100
+                    $('#valToMultiply').val(Math.round(Math.random() * 100));
+
+                    $('#login-row').hide();
+                    $('#multiplyfx-row').show();
+
+                    authToken = data.token;
+                },
+                error: function (err) {
+                    console.log(err);
+                    $('#lastResponse').text(JSON.stringify(err, 2));
                 }
+            });
+        }
 
-                console.log('going to login in with ', username, pwd);
-                $.ajax({
-                    url: "/api/v1/user/login",
-                    type: "POST",
-                    beforeSend: setLoginHeader,
-                    success: function(data) {
-                        console.log('we got data ', data);
-                        $('#lastResponse').text(JSON.stringify(data,2));
+        function doMultiplyCall() {
 
-                        authToken = data.token;
-
-                    },
-                    error: function(err){
-                        console.log(err);
-                        $('#lastResponse').text(JSON.stringify(err,2));
-                    }
-                });
+            var valToMultiply = $('#valToMultiply').val();
+            if (isNaN(Number.parseFloat(valToMultiply))) {
+                return alert('Sorry, that is not a number.');
             }
 
-            function doFunctionCall(){
+            $.ajax({
+                url: "/api/v1/fx/timesten",
+                data: {
+                    val: Number.parseFloat(valToMultiply)
+                },
+                type: "GET",
+                beforeSend: function (xhr) {
+                    xhr.setRequestHeader('Authorization', 'Bearer ' + authToken);
+                },
+                success: function (data) {
+                    $('#lastResponse').text(JSON.stringify(data));
 
-                $.ajax({
-                    url: "/api/v1/fx/timesten",
-                    data: {val: 23},
-                    type: "GET",
-                    beforeSend: function(xhr) {
-                        xhr.setRequestHeader('Authorization', 'Bearer ' + authToken);
-                    },
-                    success: function(data) {
-                        $('#lastResponse').text(JSON.stringify(data));
-                    },
-                    error: function(err){
-                        console.log(err);
-                        $('#lastResponse').text(JSON.stringify(err.responseJSON));
-                    }
-                });
+                    // Randomly pick another number between 1 and 100
+                    $('#valToMultiply').val(Math.round(Math.random() * 100));
+                },
+                error: function (err) {
+                    console.log(err);
+                    $('#lastResponse').text(JSON.stringify(err.responseJSON));
 
-            }
-        </script>
-    <h2>TransomJS Example, secured function access</h2>
+                    $('#login-row').show();
+                    $('#multiplyfx-row').hide();
+                }
+            });
+        }
+    </script>
+
     <div class="container">
-        <form class="form-horizontal" role="form" >
+        <form class="form-horizontal" role="form">
             <div class="row">
-                <div class="col-md-3"></div>
-                <div class="col-md-6">
-                    <h2>Please Login</h2>
-                    <hr>
+                <div class="col-12">
+                    <center>
+                        <h2>TransomJS Example, secured function access</h2>
+                    </center>
                 </div>
+                <br/>
+                <br/>
             </div>
-            <div class="row">
+            <div class="row" id="login-row">
                 <div class="col-md-3"></div>
                 <div class="col-md-6">
-                    <div class="form-group has-danger">
-                        <label class="sr-only" for="email">E-Mail Address</label>
-                        <div class="input-group mb-2 mr-sm-2 mb-sm-0">
-                            <div class="input-group-addon" style="width: 2.6rem"><i class="fa fa-at"></i></div>
-                            <input type="text" name="email" class="form-control" id="username" value="administrator"
-                                   placeholder="you@example.com" required autofocus>
+                    <div class="card">
+                        <div class="card-header">
+                            <h4>Please Login</h4>
+                        </div>
+                        <div class="card-body">
+                            <div class="container" style="padding:10px;">
+                                <div class="row">
+                                    <div class="col-12">
+                                        <div class="form-group has-danger">
+                                            <label class="sr-only" for="email">Username</label>
+                                            <div class="input-group mb-2 mr-sm-2 mb-sm-0">
+                                                <div class="input-group-addon" style="width: 2.6rem">
+                                                    <i class="fa fa-at"></i>
+                                                </div>
+                                                <input type="text" name="email" class="form-control" id="username" value="administrator" placeholder="administrator" required
+                                                    autofocus>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-12">
+                                        <div class="form-group">
+                                            <label class="sr-only" for="password">Password</label>
+                                            <div class="input-group mb-2 mr-sm-2 mb-sm-0">
+                                                <div class="input-group-addon" style="width: 2.6rem">
+                                                    <i class="fa fa-key"></i>
+                                                </div>
+                                                <input type="password" name="password" class="form-control" id="password" value="password" placeholder="Password" required>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-12">
+                                        <button type="button" class="btn btn-success float-right" onclick="doLogin();">
+                                            <i class="fa fa-sign-in"></i> Login</button>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
-                <div class="col-md-3">
-                </div>
             </div>
-            <div class="row">
+
+            <div class="row" style="display:none" id="multiplyfx-row">
                 <div class="col-md-3"></div>
                 <div class="col-md-6">
-                    <div class="form-group">
-                        <label class="sr-only" for="password">Password</label>
-                        <div class="input-group mb-2 mr-sm-2 mb-sm-0">
-                            <div class="input-group-addon" style="width: 2.6rem"><i class="fa fa-key"></i></div>
-                            <input type="password" name="password" class="form-control" id="password" value="password"
-                                   placeholder="Password" required>
+                    <div class="card">
+                        <div class="card-header">
+                            <h4>Enter a number and click the 'x 10' button</h4>
+                        </div>
+                        <div class="card-body">
+                            <div class="container" style="padding:10px;">
+                                <div class="row">
+                                    <div class="col-12">
+                                        <div class="form-group">
+                                            <div class="input-group mb-2 mr-sm-2 mb-sm-0">
+                                                <input type="number" class="form-control" id="valToMultiply" value="" placeholder="123" required>
+                                                <div class="input-group-addon btn-primary" style="cursor:default;" onclick="doMultiplyCall();">
+                                                    <b>x&nbsp;10</b>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     </div>
-                </div>
-                <div class="col-md-3">
-                    <div class="form-control-feedback">
-                        <span class="text-danger align-middle">
-                        <!-- Put password error message here -->    
-                        </span>
-                    </div>
-                </div>
-            </div>
-            
-            <div class="row" style="padding-top: 1rem">
-                <div class="col-md-3"></div>
-                <div class="col-md-6">
-                    <button type="button" class="btn btn-success" onclick="doLogin();"><i class="fa fa-sign-in"></i> Login</button>
-                    <span id="FxContainer" >
-                        <button type="button" class="btn btn-success" onclick="doFunctionCall();"><i class="fa fa-sign-in"></i> Call function 'timesten' with value 23</button>
-                    </span>
                 </div>
             </div>
         </form>
@@ -125,20 +175,19 @@
     <div class="container">
         <div class="row">
             <div class="col-md-3"></div>
-            <div class="col-md-6">
-                <h3>Last API reponse</h3>
-                <pre id="lastResponse"> Nothing here yet !</pre>
+            <div class="col-md-6" style="padding: 0;">
+                <h3>Latest API Response</h3>
+                <pre id="lastResponse">Nothing here yet!</pre>
             </div>
-            <div class="col-md-3"></div>
         </div>
-        
     </div>
 
-    <!-- jQuery first, then Tether, then Bootstrap JS. -->
-    <!-- <script src="https://code.jquery.com/jquery-3.1.1.slim.min.js" integrity="sha384-A7FZj7v+d/sdmMqp/nOQwliLvUsJfDHW+k9Omg/a/EheAdgtzNs3hpfag6Ed950n" crossorigin="anonymous"></script> -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js" integrity="sha384-DztdAPBWPRXSA/3eYEEUWrWCy7G5KFbe8fFjk5JAIxUYHKkDx6Qin1DkWx51bBrb" crossorigin="anonymous"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js" integrity="sha384-vBWWzlZJ8ea9aCX4pEW3rVHjgjt7zpkNpZk+02D9phzyeVkE+jo0ieGizqPLForn" crossorigin="anonymous"></script>
+    <!-- Tether, then Bootstrap JS. -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js" integrity="sha384-DztdAPBWPRXSA/3eYEEUWrWCy7G5KFbe8fFjk5JAIxUYHKkDx6Qin1DkWx51bBrb"
+        crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js" integrity="sha384-vBWWzlZJ8ea9aCX4pEW3rVHjgjt7zpkNpZk+02D9phzyeVkE+jo0ieGizqPLForn"
+        crossorigin="anonymous"></script>
 
-    
-  </body>
+</body>
+
 </html>

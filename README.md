@@ -21,7 +21,7 @@ $ npm start
 ### Details
 The first time you run the example, it will create a new database and initialize the users and groups collections. The default Administrator account is created with `password` as the password. These credentials are provided for you in the login form on the sample page.
 
-The `myApi.js` file contains the implementation and details of the server function. We're still just multiplying by ten, like we did in the [simple example](https://transomjs.github.io/docs/server-functions-example/). However, this time the `acl` property specifies that the user needs to be member of the either the `sysadmin` group or the `examplegroup`. If the `timesten` endpoint is called without an authenticated session then the request will fail with a 401 (Unauthorized) error. If the authtenticated user is not member of at least one of those groups, then the request will fail with a 403 (Forbidden).
+The `myApi.js` file contains the implementation and details of the server function. We're still just multiplying by ten, like we did in the [simple example](https://transomjs.github.io/docs/server-functions-example/). However, this time the `acl` property specifies that the user needs to be member of the either the `sysadmin` group or the `examplegroup`. If the `timesten` endpoint is called without an authenticated session then the request will fail with a 401 (Unauthorized) error. If the authenticated user is not member of at least one of those groups, then the request will fail with a 403 (Forbidden).
 ``` Javascript
 // myApi.js
 timesten: {

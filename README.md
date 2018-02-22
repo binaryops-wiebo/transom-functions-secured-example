@@ -42,7 +42,7 @@ timesten: {
 ### Logging in
 A POST request is made on the /user/login end-point, using Basic Authentication. This returns a token which must be supplied in the Authorization header as a `Bearer` token on subsequent requests, includind the `timesten` end-point.
 
-> Note that the [hello world](http://localhost:7070/api/v1/fx/hello) route is still available to users who are not logged in. 
+> Note that the `http://localhost:7070/api/v1/fx/hello` route is still available to users who are not logged in. 
 > In this case, the Anonymous user is applied to the request and permissions for that user will be validated against the endpoint.
 
 ### See Also

@@ -5,7 +5,7 @@ In this example we create a TransomJS server and use the [transom-server-functio
 This example demonstrates how you can use your own custom code as a secured endpoint in the API. Your custom code runs in the context of the TransomJS server, and has access to the entire server context. The plugins take care of securiing your new function. The user needs to be authenticated and authorized to call your function. In this example we just use the default administrator user.
 
 ### Run the example
-Clone the `transom-functions-secured-example` GitHub repository and install the dependencies with npm. 
+Clone the `transom-functions-secured-example` repository and install the dependencies with npm. 
 ```bash
 $ git clone git@github.com:binaryops-wiebo/transom-functions-secured-example.git
 $ cd transom-functions-secured-example

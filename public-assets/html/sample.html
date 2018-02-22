@@ -11,11 +11,7 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.1/css/font-awesome.min.css">
   </head>
   <body>
-      <style>
-          #FxContainer:{
-              padding-left: 20px;
-          }
-      </style>
+      
         <script>
             var authToken = '';
             function doLogin(){
@@ -50,19 +46,15 @@
 
             function doFunctionCall(){
 
-                function setAuthToken(xhr){
-                    xhr.setRequestHeader('Authorization', 'Bearer ' + authToken);
-                }
-
                 $.ajax({
                     url: "/api/v1/fx/timesten",
                     data: {val: 23},
                     type: "GET",
-                    beforeSend: setAuthToken,
+                    beforeSend: function(xhr) {
+                        xhr.setRequestHeader('Authorization', 'Bearer ' + authToken);
+                    },
                     success: function(data) {
-                        console.log('we got data ', data);
                         $('#lastResponse').text(JSON.stringify(data));
-                        authToken = data.token;
                     },
                     error: function(err){
                         console.log(err);
@@ -95,11 +87,6 @@
                     </div>
                 </div>
                 <div class="col-md-3">
-                    <div class="form-control-feedback">
-                        <span class="text-danger align-middle">
-                            <i class="fa fa-close"></i> Example error message
-                        </span>
-                    </div>
                 </div>
             </div>
             <div class="row">

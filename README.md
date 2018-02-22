@@ -13,8 +13,8 @@ $ npm update
 
 You'll need to have access to MongoDb for this example. If you don't already have it running locally, you can [download](https://www.mongodb.com/download-center#community) and install it, or get a free sandbox database at [mLab](https://www.mlab.com) among others. Update the `package.json` file `scripts` section to use the connect string to your mongoDb instance.
 
-Use `npm start` to run the api server. 
-The server will start on the localhost, on port 7070 and the login page will be available at http://localhost:7070/html/sample.html ```bash
+Use `npm start` to run the api server. The server will start on the localhost, on port 7070 and the login page will be available at http://localhost:7070/html/sample.html 
+```bash
 $ npm start
 ```
  

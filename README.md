@@ -14,6 +14,7 @@ The first time you run the example, it will initialize the users and groups coll
 
 The myApi.js file contains the details of the server function. We're still just multiplying by ten, just like the [simple example](https://transomjs.github.io/docs/server-functions-example/). However, this time the `acl` property specifies that the user needs to be member of the either the `sysadmin` group or the `examplegroup`. If this end point is called without an authenticated session then the request will fail. If the authtenticated user is not member of at least one of those groups, then the request will also fail.
 ``` Javascript
+// myApi.js
 timesten: {
   methods: ["GET"],
   "function": function(server, req, res, next) {

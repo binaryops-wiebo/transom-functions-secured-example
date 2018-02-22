@@ -8,7 +8,8 @@ This example demonstrates how you can use your own custom code as a secured endp
 Clone the `transom-functions-secured-example` GitHub repository and install the dependencies with npm. 
 ```bash
 $ git clone git@github.com:binaryops-wiebo/transom-functions-secured-example.git
-$ npm update
+$ cd transom-functions-secured-example
+$ npm install
 ```
 
 You'll need to have access to MongoDb for this example. If you don't already have it running locally, you can [download](https://www.mongodb.com/download-center#community) and install it, or get a free sandbox database at [mLab](https://www.mlab.com) among others. Update the `package.json` file `scripts` section to use the connect string to your mongoDb instance.

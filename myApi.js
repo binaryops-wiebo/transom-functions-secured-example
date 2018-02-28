@@ -4,34 +4,33 @@ module.exports = {
 	transom: {},
 	definition: {
 		scaffold: {
-			"public-assets": {
-				static: true,
-				//assetPath: 'public-assets',
-				path:  /html\/?.*/
-			}
+			staticRoutes: [{
+				path: /html\/?.*/,
+				folder: 'public-assets'
+			}]
 		},
-        functions: {
-			hello:{
+		functions: {
+			hello: {
 				"methods": ["GET"],
-				"function": function(server, req, res, next) {
+				"function": function (server, req, res, next) {
 					//do stuff
 					res.send("hello world");
 					next();
-					}
+				}
 			},
 			timesten: {
 				methods: ["GET"],
-				"function": function(server, req, res, next) {
-					if (req.params["val"]){
+				"function": function (server, req, res, next) {
+					if (req.params["val"]) {
 						const v = Number.parseFloat(req.params["val"]);
-						res.send(v + " times ten is " + (v*10) );
+						res.send(v + " times ten is " + (v * 10));
 						next();
-					}	
+					}
 				},
 				acl: {
-					groups: ["sysadmin","examplegroup"]
-				} 
+					groups: ["sysadmin", "examplegroup"]
+				}
 			}
-		}	
-    }
+		}
+	}
 };

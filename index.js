@@ -12,7 +12,7 @@ const transom = new Transom();
 const myApi = require('./myApi');
 console.log("Running " + myApi.name);
 
-const mongoUri = process.env.connectstr
+const mongoUri = process.env.connectstr || 'mongodb://localhost/transom-db-secured-fx';
 
 console.log('mongo connect string is ', mongoUri);
 

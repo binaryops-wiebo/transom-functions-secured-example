@@ -7,20 +7,20 @@
   "description": "Simple example of transom-server-functions.",
   "main": "index.js",
   "scripts": {
-    "start": "cross-env connectstr=mongodb://localhost/transom-db-secured-fx node index.js",
+    "start": "cross-env connectstr=mongodb://localhost/transom-db-secured-fx DEBUG=transom* node index.js",
     "debug": "cross-env connectstr=mongodb://localhost/transom-db-secured-fx DEBUG=transom* node --inspect-brk index.js"
   },
   "author": "Wiebo Troost",
   "license": "MIT",
   "dependencies": {
     "@transomjs/transom-core": "^1.0.6",
-    "@transomjs/transom-mongoose": "^1.1.18",
-    "@transomjs/transom-mongoose-localuser": "^1.0.11",
-    "@transomjs/transom-scaffold": "^1.0.12",
+    "@transomjs/transom-mongoose": "^1.4.4",
+    "@transomjs/transom-mongoose-localuser": "^1.2.0",
+    "@transomjs/transom-scaffold": "^1.2.1",
     "@transomjs/transom-server-functions": "^1.0.5",
-    "opn": "^5.2.0"
+    "opn": "^5.3.0"
   },
   "devDependencies": {
-    "cross-env": "^5.1.3"
+    "cross-env": "^5.1.5"
   }
 }

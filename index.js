@@ -19,9 +19,9 @@ console.log('mongo connect string is ', mongoUri);
 transom.configure(transomMongoose, {
 	mongodbUri: mongoUri
 });
-transom.configure(transomMongooseLocalUser, {});
-transom.configure(transomServerFunctions, {});
-transom.configure(transomScaffold, {});
+transom.configure(transomMongooseLocalUser);
+transom.configure(transomServerFunctions);
+transom.configure(transomScaffold);
 
 // Initialize my TransomJS API metadata.
 transom.initialize(myApi).then(function (server) {

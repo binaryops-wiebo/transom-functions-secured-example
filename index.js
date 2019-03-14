@@ -33,7 +33,7 @@ transom.initialize(myApi).then(function (server) {
 		// ****************************************************************************
 		// Handle 404 errors when a route is undefined.
 		// ****************************************************************************
-		server.get('.*', function (req, res, next) {
+		server.get('/.*', function (req, res, next) {
 			var err = new Error(req.url + " does not exist");
 			err.status = 404;
 			next(err);

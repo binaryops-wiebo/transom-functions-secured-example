@@ -5,7 +5,7 @@ module.exports = {
 	definition: {
 		scaffold: {
 			staticRoutes: [{
-				path: /html\/?.*/,
+				path: '/html/*',
 				folder: 'public-assets'
 			}]
 		},

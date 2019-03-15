@@ -7,7 +7,8 @@
   "description": "Simple example of transom-server-functions.",
   "main": "index.js",
   "scripts": {
-    "start": "cross-env connectstr=mongodb://localhost/transom-db-secured-fx DEBUG=transom* node index.js",
+    "start": "node index.js",
+    "local-start": "cross-env connectstr=mongodb://localhost/transom-db-secured-fx DEBUG=transom* node index.js",
     "debug": "cross-env connectstr=mongodb://localhost/transom-db-secured-fx DEBUG=transom* node --inspect-brk index.js"
   },
   "author": "Wiebo Troost",

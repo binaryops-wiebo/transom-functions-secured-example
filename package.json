@@ -14,12 +14,12 @@
   "author": "Wiebo Troost",
   "license": "MIT",
   "dependencies": {
-    "@transomjs/transom-core": "^1.2.1",
-    "@transomjs/transom-mongoose": "^1.8.11",
+    "@transomjs/transom-core": "^2.0.0",
+    "@transomjs/transom-mongoose": "^2.0.0",
     "@transomjs/transom-mongoose-localuser": "^1.4.4",
     "@transomjs/transom-scaffold": "^1.2.3",
     "@transomjs/transom-server-functions": "^1.0.8",
-    "opn": "^5.4.0"
+    "opn": "^6.0.0"
   },
   "devDependencies": {
     "cross-env": "^5.2.0"

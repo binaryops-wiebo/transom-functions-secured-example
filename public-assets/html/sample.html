@@ -18,20 +18,15 @@
         var authToken = '';
 
         function doLogin() {
-            const username = $('#username').val();
+            const uid = $('#username').val();
             const pwd = $('#password').val();
 
-            var setLoginHeader =
-                console.log('going to login in with ', username, pwd);
+            // var setLoginHeader =
+            console.log('going to login in with ', username, pwd);
             $.ajax({
                 url: "/api/v1/user/login",
                 type: "POST",
-                beforeSend: function (xhr) {
-                    const authVal = 'Basic ' + btoa(username + ':' + pwd);
-                    console.log('AuthVal ', authVal);
-                    xhr.setRequestHeader('Authorization', authVal);
-
-                },
+                data: {username: uid, password: pwd},
                 success: function (data) {
                     console.log('we got data ', data);
                     $('#lastResponse').text(JSON.stringify(data, 2));
